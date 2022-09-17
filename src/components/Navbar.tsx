@@ -24,7 +24,7 @@ const Navbar = () => {
         }
       >
         {favQuantity > 0 ? (
-          <div className="absolute rounded-full bg-green-500 flex justify-center items-center w-6 h-6 ml-20">
+          <div className="absolute rounded-full bg-green-500 flex justify-center items-center w-6 h-6 ml-24 ">
             {favQuantity}
           </div>
         ) : null}

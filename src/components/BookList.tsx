@@ -60,7 +60,6 @@ const BookList = () => {
             </div>
           </div>
         ))}
-      <h1> ADD MORE </h1>
     </div>
   );
 };

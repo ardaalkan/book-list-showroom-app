@@ -22,7 +22,7 @@ const Favorites = () => {
           favorite.map((book: any) => (
             <div
               key={book.id}
-              className="text-center bg-slate-200 m-5 p-5 items-center transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-green-500 duration-300"
+              className="text-center max-h-[560px] bg-slate-200 m-5 p-5 items-center transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-green-500 duration-300"
             >
               <div>
                 <h2>{book.title}</h2>
