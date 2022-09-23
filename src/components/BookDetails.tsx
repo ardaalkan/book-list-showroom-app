@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { BOOK_DETAILS_URL } from "../API";
+import useFetch from "../hooks/useFetch";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 interface bookType {
   title: string;
@@ -11,6 +17,7 @@ interface bookType {
 }
 
 const BookDetails = () => {
+  // const { loading } = useFetch();
   const [book, setBook] = useState<bookType>();
   const { id } = useParams();
 
@@ -24,8 +31,8 @@ const BookDetails = () => {
 
   return (
     <>
-      <div className="flex display-row m-auto mt-12 w-10/12">
-        <div className="w-1/3">
+      <div className="w-3/5 m-auto mt-5 min-h-[125vh]">
+        <div className="w-1/3 m-auto">
           <h2 className="font-bold text-2xl text-blue-600">{book?.title}</h2>
           <img
             className="h-[340px] m-auto mt-6"
@@ -33,15 +40,49 @@ const BookDetails = () => {
             alt="url"
           />
         </div>
-        <div className="w-2/3 mt-12 text-left">
-          <h2 className="font-bold mb-1">Description</h2>
-          <p className="mb-4">{book?.description}</p>
-
-          <h2 className="font-bold mb-1">Authors</h2>
-          <p className="mb-4">{book?.authors}</p>
-
-          <h2 className="font-bold mb-1">Genres</h2>
-          <p>{book?.genres}</p>
+        <div className="w-2/3 mt-12 text-left m-auto mb-5">
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography>Book Detail</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                <p className="mb-4">{book?.description}</p>
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography>Author</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                <p className="mb-4">{book?.authors}</p>
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography>Genres</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                <p className="mb-4">{book?.genres}</p>
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
         </div>
       </div>
     </>

@@ -1,6 +1,7 @@
 import { useAppContext } from "./context/AppContext";
 import { NavLink } from "react-router-dom";
 import { HiArrowLeft } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
 
 const Favorites = () => {
   const { favorite, addToFavorites, removeFromFavorites } = useAppContext();
@@ -9,6 +10,8 @@ const Favorites = () => {
     const boolean = favorite.some((book) => book.id === id);
     return boolean;
   };
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -32,6 +35,7 @@ const Favorites = () => {
                   src={book.image_url}
                   alt="#"
                   className="w-72 h-96 flex items-center mx-auto"
+                  onClick={() => navigate(`/books/${book.id}`)}
                 />
               </div>
               <div>
