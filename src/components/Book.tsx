@@ -33,7 +33,7 @@ const Book = (book: any) => {
           <img
             src={book.image_url}
             alt="#"
-            className="w-72 h-96 flex items-center"
+            className="w-72 h-96 flex items-center mx-auto"
             onClick={() => navigate(`/books/${book.id}`)}
           />
         </div>

@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { BOOK_DETAILS_URL } from "../API";
+import ReactPlaceholder from "react-placeholder";
 import useFetch from "../hooks/useFetch";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -17,7 +18,7 @@ interface bookType {
 }
 
 const BookDetails = () => {
-  // const { loading } = useFetch();
+  const { loading } = useFetch();
   const [book, setBook] = useState<bookType>();
   const { id } = useParams();
 
@@ -32,13 +33,20 @@ const BookDetails = () => {
   return (
     <>
       <div className="w-3/5 m-auto mt-5 min-h-[125vh]">
-        <div className="w-1/3 m-auto">
-          <h2 className="font-bold text-2xl text-blue-600">{book?.title}</h2>
-          <img
-            className="h-[340px] m-auto mt-6"
-            src={book?.image_url}
-            alt="url"
-          />
+        <div className="w-1/3 m-auto h-[340px]">
+          <ReactPlaceholder
+            type="media"
+            rows={5}
+            ready={loading === false}
+            className="col-start-3 col-span-2 mt-5"
+          >
+            <h2 className="font-bold text-2xl text-blue-600">{book?.title}</h2>
+            <img
+              className="h-[340px] m-auto mt-6"
+              src={book?.image_url}
+              alt="book-url"
+            />
+          </ReactPlaceholder>
         </div>
         <div className="w-2/3 mt-12 text-left m-auto mb-5">
           <Accordion>
