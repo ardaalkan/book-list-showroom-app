@@ -1,6 +1,7 @@
 import { useAppContext } from "./context/AppContext";
 import { useNavigate } from "react-router-dom";
 // import { useMemo } from "react";
+import { UserAuth } from "./context/AutContext";
 
 // interface BookLists {
 //   books: null;
@@ -11,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 const Book = (book: any) => {
   const { favorite, addToFavorites, removeFromFavorites } = useAppContext();
   const navigate = useNavigate();
+  const { user } = UserAuth();
 
   // const favMemo = useMemo(() => {
   // }, [book.id]);
@@ -37,23 +39,25 @@ const Book = (book: any) => {
             onClick={() => navigate(`/books/${book.id}`)}
           />
         </div>
-        <div>
-          {favoritesChecker(book.id) ? (
-            <button
-              onClick={() => removeFromFavorites(book.id)}
-              className="bg-indigo-900 text-slate-50 mt-2 p-2 rounded-md"
-            >
-              Remove Favorite
-            </button>
-          ) : (
-            <button
-              onClick={() => addToFavorites(book)}
-              className="bg-indigo-700 text-slate-50 mt-2 p-2 rounded-sm"
-            >
-              Add to Favorite
-            </button>
-          )}
-        </div>
+        {user ? (
+          <div>
+            {favoritesChecker(book.id) ? (
+              <button
+                onClick={() => removeFromFavorites(book.id)}
+                className="bg-indigo-900 text-slate-50 mt-2 p-2 rounded-md"
+              >
+                Remove Favorite
+              </button>
+            ) : (
+              <button
+                onClick={() => addToFavorites(book)}
+                className="bg-indigo-700 text-slate-50 mt-2 p-2 rounded-sm"
+              >
+                Add to Favorite
+              </button>
+            )}
+          </div>
+        ) : null}
       </div>
     </div>
   );
